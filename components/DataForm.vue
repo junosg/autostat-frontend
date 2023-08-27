@@ -26,17 +26,21 @@
                 class="w-full"
             />
         </div>
-        <ElButton type="primary" @click="analyze">Analyze</ElButton>
+        <ElButton type="primary" @click="analyze" :disabled="isLoading">Analyze</ElButton>
     </section>
 </template>
 <script setup lang="ts">
 import { OptionType } from 'element-plus/es/components/select-v2/src/select.types';
+const config = useRuntimeConfig()
 
-const data = useData();
+const data = useComparisonData();
+const result = useComparisonResult();
 
 const predictorVariable = ref();
 const predictorVariablePaired = ref(false);
 const outcomeVariable = ref(); 
+
+const isLoading = ref(false)
 
 //#region computed
 const predictorVariableOptions = computed(() => {
@@ -82,6 +86,8 @@ const predictorDistinctCount = computed(() => {
 
 //#region methods
 const analyze = async () => {
+    isLoading.value = true;
+
     var payload = {
         predictor: predictorVariable.value,
         predictorPaired: predictorVariablePaired.value,
@@ -89,12 +95,15 @@ const analyze = async () => {
         data: data.value,
     }
 
-    const result = await useFetch("http://localhost:5000/test", {
+    const response = await useFetch(`${config.public.apiUrl}/test`, {
         method: 'post',
         body: payload
     });
 
-    console.log(result);
+
+    result.value = response.data.value;
+    isLoading.value = false;
+    console.log(result.value);
 }
 
 const onPredictorChange = () => {
