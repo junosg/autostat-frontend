@@ -25,7 +25,7 @@ import { UploadFilled } from '@element-plus/icons-vue'
 import { UploadFile, UploadFiles } from 'element-plus';
 import * as XLSX from 'xlsx';
 
-const data = useData();
+const data = useComparisonData();
 
 const onUploadSuccess = async (response: any, uploadFile: UploadFile, uploadFiles: UploadFiles) => {
     await uploadFile.raw?.arrayBuffer().then((response) => {

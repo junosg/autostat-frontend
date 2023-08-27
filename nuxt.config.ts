@@ -7,4 +7,9 @@ export default defineNuxtConfig({
     '@element-plus/nuxt',
   ],
   elementPlus: { /** Options */ },
+  runtimeConfig: {
+    public: {
+      apiUrl: process.env.API_URL,
+    }
+  }
 })
