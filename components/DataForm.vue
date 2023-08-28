@@ -30,12 +30,12 @@
         <ElCard class="box-card">
             <template #header>
                 <div class="card-header grid grid-cols-6">
-                    <span class="justify-self-start col-span-3">Result</span>
+                    <div class="text-3xl text-red-400 font-mono col-span-3">Result</div>
                     <div class="col-span-2"></div>
-                    <ElButton class="button justify-self-end col-span-1" text><Icon name="material-symbols:content-copy" @click="copyResult"></Icon></ElButton>
+                    <ElButton class="button justify-self-end col-span-1" text><Icon size="30px" name="material-symbols:content-copy-outline-rounded" @click="copyResult"></Icon></ElButton>
                 </div>
             </template>
-            <pre>{{ result }}</pre>
+            <pre class="font-mono">{{ result }}</pre>
         </ElCard>
     </section>
 </template>
