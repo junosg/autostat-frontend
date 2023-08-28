@@ -3,6 +3,7 @@ export default defineNuxtConfig({
     'nuxt-icon', 
     '@nuxtjs/tailwindcss',
     '@element-plus/nuxt',
+    '@nuxtjs/google-adsense'
   ],
   elementPlus: { /** Options */ },
   runtimeConfig: {
@@ -13,4 +14,7 @@ export default defineNuxtConfig({
   routeRules: {
     '/': { redirect: '/comparison' },
   },
+  'google-adsense': {
+    id: 'ca-pub-2501368710409941'
+  }
 })
