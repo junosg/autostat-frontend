@@ -15,6 +15,8 @@ export default defineNuxtConfig({
     '/': { redirect: '/comparison' },
   },
   'google-adsense': {
-    id: 'ca-pub-2501368710409941'
+    id: 'ca-pub-2501368710409941',
+    pageLevelAds: true,
+    test: true
   }
 })

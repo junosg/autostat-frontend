@@ -26,7 +26,7 @@
                 class="w-full"
             />
         </div>
-        <ElButton type="primary" @click="analyze" :disabled="isLoading">Analyze</ElButton>
+        <ElButton type="primary" @click="analyze" :disabled="isLoading || (predictorVariable == null || outcomeVariable == null)">Analyze</ElButton>
         <ElCard class="box-card">
             <template #header>
                 <div class="card-header grid grid-cols-6">
@@ -35,7 +35,7 @@
                     <ElButton class="button justify-self-end col-span-1" text><Icon size="30px" name="material-symbols:content-copy-outline-rounded" @click="copyResult"></Icon></ElButton>
                 </div>
             </template>
-            <pre class="font-mono">{{ result }}</pre>
+            <pre class="font-mono min-h-fit">{{ result }}</pre>
         </ElCard>
     </section>
 </template>
@@ -46,9 +46,9 @@ const config = useRuntimeConfig()
 const data = useComparisonData();
 const result = useComparisonResult();
 
-const predictorVariable = ref();
+const predictorVariable = ref(null);
 const predictorVariablePaired = ref(false);
-const outcomeVariable = ref();
+const outcomeVariable = ref(null);
 
 const isLoading = ref(false)
 
@@ -151,7 +151,7 @@ const checkIfNumeric = (data: Array<object>, key: string) => {
 }
 
 const copyResult = () => {
-    navigator.clipboard.writeText(JSON.stringify(result.value as object))
+    navigator.clipboard.writeText(`Draw conclusion from this result \n ${JSON.stringify(result.value as object)}`)
 }
 //#endregion methods
 </script>
