@@ -27,6 +27,16 @@
             />
         </div>
         <ElButton type="primary" @click="analyze" :disabled="isLoading">Analyze</ElButton>
+        <ElCard class="box-card">
+            <template #header>
+                <div class="card-header grid grid-cols-6">
+                    <span class="justify-self-start col-span-3">Result</span>
+                    <div class="col-span-2"></div>
+                    <ElButton class="button justify-self-end col-span-1" text><Icon name="material-symbols:content-copy" @click="copyResult"></Icon></ElButton>
+                </div>
+            </template>
+            <pre>{{ result }}</pre>
+        </ElCard>
     </section>
 </template>
 <script setup lang="ts">
@@ -38,7 +48,7 @@ const result = useComparisonResult();
 
 const predictorVariable = ref();
 const predictorVariablePaired = ref(false);
-const outcomeVariable = ref(); 
+const outcomeVariable = ref();
 
 const isLoading = ref(false)
 
@@ -100,7 +110,10 @@ const analyze = async () => {
         body: payload
     });
 
-    result.value = response.data.value;
+    var resultObject: object = response.data.value as object
+
+    result.value = resultObject;
+
     isLoading.value = false;
 }
 
@@ -135,6 +148,10 @@ const checkIfNumeric = (data: Array<object>, key: string) => {
     });
     
     return returnValue
+}
+
+const copyResult = () => {
+    navigator.clipboard.writeText(JSON.stringify(result.value as object))
 }
 //#endregion methods
 </script>
