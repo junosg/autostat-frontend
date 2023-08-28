@@ -53,7 +53,7 @@ const predictorVariableOptions = computed(() => {
         }
     }) as OptionType[];
 
-    return returnValue;
+    return returnValue.filter((element) => checkIfCategorical(data.value, element.value));
 });
 
 const outcomeVariableOptions = computed(() => {
@@ -66,7 +66,7 @@ const outcomeVariableOptions = computed(() => {
         }
     }) as OptionType[];
 
-    return returnValue.filter(element => predictorVariable.value != element.value);
+    return returnValue.filter(element => predictorVariable.value != element.value).filter((element => checkIfNumeric(data.value, element.value)));
 });
 
 const predictorDistinctCount = computed(() => {
@@ -100,15 +100,41 @@ const analyze = async () => {
         body: payload
     });
 
-
     result.value = response.data.value;
     isLoading.value = false;
-    console.log(result.value);
 }
 
 const onPredictorChange = () => {
     if (outcomeVariable.value == predictorVariable.value)
         outcomeVariable.value = null;
+}
+
+const checkIfCategorical = (data: Array<object>, key: string) => {
+    var returnValue = true
+
+    data.every((element) => {
+        if (typeof element[key as keyof object] != "string") {
+            returnValue = false
+        }
+        
+        return !returnValue
+    });
+    
+    return returnValue
+}
+
+const checkIfNumeric = (data: Array<object>, key: string) => {
+    var returnValue = true
+
+    data.every((element) => {
+        if (typeof element[key as keyof object] != "number") {
+            returnValue = false
+        }
+        
+        return !returnValue
+    });
+    
+    return returnValue
 }
 //#endregion methods
 </script>

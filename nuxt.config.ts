@@ -9,5 +9,8 @@ export default defineNuxtConfig({
     public: {
       apiUrl: process.env.API_URL,
     }
-  }
+  },
+  routeRules: {
+    '/': { redirect: '/comparison' },
+  },
 })

@@ -1,5 +1,5 @@
 <template>
-    <section>
+    <section class="min-h-screen">
         <DataForm></DataForm>
     </section>
 </template>
