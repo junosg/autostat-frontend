@@ -13,7 +13,7 @@
             <ElCheckbox
                 v-model="predictorVariablePaired"
                 size="large"
-                :disabled="predictorDistinctCount != 2"
+                :disabled="!canBePaired"
                 >
                 Paired
             </ElCheckbox>
@@ -79,8 +79,8 @@ const outcomeVariableOptions = computed(() => {
     return returnValue.filter(element => predictorVariable.value != element.value).filter((element => checkIfNumeric(data.value, element.value)));
 });
 
-const predictorDistinctCount = computed(() => {
-    if (data.value.length <= 0 || predictorVariable.value == null) return 0;
+const canBePaired = computed(() => {
+    if (data.value.length <= 0 || predictorVariable.value == null) return false;
 
     var distinctValues: string[] = [];
 
@@ -90,7 +90,15 @@ const predictorDistinctCount = computed(() => {
         distinctValues.push(element[predictorVariable.value as keyof object])
     });
 
-    return distinctValues.length;
+    if (distinctValues.length != 2) return false;
+
+    var distinctValueCountsInData: number[] = [];
+
+    distinctValues.forEach((value, index) => {
+        distinctValueCountsInData[index] = data.value.filter((element => element[predictorVariable.value as keyof object] == value)).length
+    });
+
+    return distinctValueCountsInData.every((count, index, array) => count === array[0]);
 });
 //#endregion computed
 
