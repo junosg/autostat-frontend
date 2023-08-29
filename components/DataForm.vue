@@ -151,7 +151,7 @@ const checkIfNumeric = (data: Array<object>, key: string) => {
 }
 
 const copyResult = () => {
-    navigator.clipboard.writeText(`Draw conclusion from this result \n ${JSON.stringify(result.value as object)}`)
+    navigator.clipboard.writeText(`${JSON.stringify(result.value as object)}`)
 }
 //#endregion methods
 </script>
