@@ -27,7 +27,7 @@
             />
         </div>
         <ElButton type="primary" @click="analyze" :disabled="isLoading || (predictorVariable == null || outcomeVariable == null)">Analyze</ElButton>
-        <ElCard class="box-card">
+        <ElCard class="box-card" v-loading="isLoading">
             <template #header>
                 <div class="card-header grid grid-cols-6">
                     <div class="text-3xl text-red-400 font-mono col-span-3">Result</div>
@@ -101,6 +101,15 @@ const canBePaired = computed(() => {
     return distinctValueCountsInData.every((count, index, array) => count === array[0]);
 });
 //#endregion computed
+
+//#region watch
+watch(data, (newData) => {
+    predictorVariable.value = null;
+    outcomeVariable.value = null;
+    predictorVariablePaired.value = false;
+    result.value = null
+})
+//#endregion watch
 
 //#region methods
 const analyze = async () => {
