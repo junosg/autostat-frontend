@@ -7,7 +7,7 @@
   useHead({
     title: 'autostat',
     meta: [
-      { name: 'description', content: 'A tool that automates the statistical analysis of data.' }
+      { name: 'description', content: 'A tool for automating the statistical analysis of a data.' }
     ]
   })
 </script>

@@ -3,12 +3,10 @@
         <AppHeader></AppHeader>
     </section>
     <section class="grid grid-cols-12 gap-4">
-        <div class="col-span-2">
+        <div class="col-span-3">
         </div>
-        <NuxtPage class="col-span-8"/>
-        <div class="col-span-2">
-            <Adsbygoogle></Adsbygoogle>
-            <Adsbygoogle></Adsbygoogle>
+        <NuxtPage class="col-span-6"/>
+        <div class="col-span-3">
             <Adsbygoogle></Adsbygoogle>
         </div>
     </section>
