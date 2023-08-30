@@ -2,7 +2,17 @@
     <section class="grid gap-4 py-8">
         <DataUpload/>
         <div>
-            <ElText size="large">Predictor Variable</ElText>
+            <ElText size="large">
+                <ClientOnly>
+                    <ElTooltip
+                        :content="predictorVariableTooltip"
+                        effect="dark"
+                        placement="top-start"
+                        >
+                        Predictor Variable
+                    </ElTooltip>
+                </ClientOnly>
+            </ElText>
             <ElSelectV2 
                 v-model="predictorVariable" 
                 :options="predictorVariableOptions"
@@ -18,7 +28,18 @@
             </ElCheckbox>
         </div>
         <div>
-            <ElText size="large">Outcome Variable</ElText>
+            
+            <ElText size="large">
+                <ClientOnly>
+                    <ElTooltip
+                        :content="outcomeVariableTooltip"
+                        effect="dark"
+                        placement="top-start"
+                        >
+                        Outcome Variable
+                    </ElTooltip>
+                </ClientOnly>
+            </ElText>
             <ElSelectV2 
                 v-model="outcomeVariable" 
                 :options="outcomeVariableOptions"
@@ -145,7 +166,9 @@ const result = useComparisonResult();
 
 const predictorVariable = ref(null);
 const predictorVariablePaired = ref(false);
+const predictorVariableTooltip = ref("Predictor variables, also known as independent variables, are the variables in a statistical or predictive model that are used to explain or predict the variability in the dependent variable.");
 const outcomeVariable = ref(null);
+const outcomeVariableTooltip = ref("Outcome variables, also known as dependent variables, are the variables in a statistical analysis or predictive model that represent the results or outcomes being studied or predicted.");
 const error = ref(null as string|null);
 
 const isLoading = ref(false)
