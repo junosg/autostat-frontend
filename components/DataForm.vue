@@ -34,6 +34,10 @@
                     <ElButton class="button justify-self-end col-span-1" text><Icon size="30px" name="material-symbols:content-copy-outline-rounded" @click="copyResult"></Icon></ElButton>
                 </div>
             </template>
+            
+            <div v-if="error" class="text-1xl text-red-400 font-mono">
+                {{ error }}
+            </div>
 
             <div v-if="result">
                 <!-- Descriptives -->
@@ -142,6 +146,7 @@ const result = useComparisonResult();
 const predictorVariable = ref(null);
 const predictorVariablePaired = ref(false);
 const outcomeVariable = ref(null);
+const error = ref(null as string|null);
 
 const isLoading = ref(false)
 
@@ -215,14 +220,22 @@ const analyze = async () => {
         data: data.value,
     }
 
-    const response = await useFetch(`${config.public.apiUrl}/test`, {
+    await useFetch(`${config.public.apiUrl}/test`, {
         method: 'post',
         body: payload
+    }).then(response => {
+        var autoStatResult: AutoStatResult = response.data.value as AutoStatResult
+
+        result.value = autoStatResult;
+        error.value = null;
+
+        if (result.value) {
+            error.value = null;
+        } else {
+            error.value ="Analysis failed. Please make sure that the data uploaded is following a vertical layout.";
+        }
+    }, err => {
     });
-
-    var autoStatResult: AutoStatResult = response.data.value as AutoStatResult
-
-    result.value = autoStatResult;
 
     isLoading.value = false;
 }
