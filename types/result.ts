@@ -34,11 +34,20 @@ interface DescriptiveTestResult {
     variance: string
 }
 
+interface PostHocResult {
+    test: string,
+    result: Record<string, {
+        statistic: number,
+        pvalue: number
+    }>
+}
+
 export interface AutoStatResult extends TestResult {
     assumptionsResults: {
         equalVariance: EqualVarianceResult,
         normality: NormalityResult,
     },
     descriptives: Record<string, DescriptiveTestResult>,
+    postHoc: PostHocResult
 }
 
