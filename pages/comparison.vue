@@ -1,6 +1,6 @@
 <template>
     <section class="min-h-screen">
-        <DataForm></DataForm>
+        <ComparisonForm></ComparisonForm>
     </section>
 </template>
 <script setup lang="ts">

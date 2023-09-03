@@ -1,6 +1,6 @@
 <template>
     <section class="grid gap-4 py-8">
-        <DataUpload/>
+        <ComparisonUpload/>
         <div>
             <ElText size="large">
                 <ClientOnly>
@@ -59,7 +59,7 @@
             <div v-if="error" class="text-1xl text-red-400 font-mono">
                 {{ error }}
             </div>
-            <DataResult v-if="result"></DataResult>
+            <ComparisonResult v-if="result"></ComparisonResult>
         </ElCard>
     </section>
 </template>
