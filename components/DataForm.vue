@@ -67,7 +67,7 @@
 import { OptionType } from 'element-plus/es/components/select-v2/src/select.types';
 import { AutoStatResult } from '../types/result'
 
-const config = useRuntimeConfig()
+const config = useAppConfig()
 
 const data = useComparisonData();
 const result = useComparisonResult();
@@ -151,21 +151,27 @@ const analyze = async () => {
         data: data.value,
     }
 
-    await useFetch(`${config.public.apiUrl}/test`, {
+    await useFetch(`${config.apiUrl}/test`, {
         method: 'post',
-        body: payload
+        body: payload,
+        headers: {
+            auth: config.apiKey
+        }
     }).then(response => {
         var autoStatResult: AutoStatResult = response.data.value as AutoStatResult
+        var autoStatError = response.error.value as object;
 
         result.value = autoStatResult;
         error.value = null;
 
         if (result.value) {
             error.value = null;
-        } else {
-            error.value ="Analysis failed. Please make sure that the data uploaded is following a vertical layout.";
         }
-    }, err => {
+
+        if (autoStatError) {
+            type ErrorKey = keyof typeof autoStatError;
+            error.value = autoStatError["data" as ErrorKey]['message'] as string;
+        }
     });
 
     isLoading.value = false;

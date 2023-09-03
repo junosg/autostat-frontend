@@ -6,10 +6,9 @@ export default defineNuxtConfig({
     '@nuxtjs/google-adsense'
   ],
   elementPlus: { /** Options */ },
-  runtimeConfig: {
-    public: {
-      apiUrl: process.env.API_URL,
-    }
+  appConfig: {
+    apiUrl: process.env.API_URL,
+    apiKey: process.env.API_KEY
   },
   routeRules: {
     '/': { redirect: '/comparison' },
