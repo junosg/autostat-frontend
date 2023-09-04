@@ -6,6 +6,6 @@
 <script setup lang="ts">
     definePageMeta({
         title: 'Comparison Test',
-        description: 'Automatically computes the suited statistical comparison test based on the given data along with its assumptions.'
+        description: 'Automatically chooses the appropriate statistical comparison test based on the provided data and the assumptions inherent to that particular test.'
     })
 </script>

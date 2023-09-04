@@ -11,7 +11,7 @@ export default defineNuxtConfig({
     apiKey: process.env.API_KEY
   },
   routeRules: {
-    '/': { redirect: '/comparison' },
+    '/': { redirect: '/about' },
   },
   'google-adsense': {
     id: 'ca-pub-2501368710409941',
