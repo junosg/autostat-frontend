@@ -1,9 +1,9 @@
 <template>
-    <section class="flex flex-col items-center justify-end py-40">
-        <section class="h-24 p-10 m-10 flex justify-start items-center">
-            <div class="text-8xl text-red-400 font-mono">autostat</div>
+    <section class="flex flex-col items-center justify-end py-40 w-full">
+        <section class="h-24 p-5 m-5 flex justify-start items-center">
+            <div class="text-6xl text-red-400 font-mono">autostat</div>
         </section>
-        <div class="text-2xl text-gray-500 font-mono">
+        <div class="text-gray-500 font-mono text-justify" :class="textSizeClass">
             A no-cost statistical tool that autonomously determines the fitting test according to the supplied data. Its objective is to assist researchers in swiftly obtaining results for uncomplicated statistical analyses, and it is accessible even to those without prior knowledge of statistics.
         </div>
         <div class="p-8">
@@ -17,5 +17,13 @@
         description: 'A no-cost statistical tool that autonomously determines the fitting test according to the supplied data. Its objective is to assist researchers in swiftly obtaining results for uncomplicated statistical analyses, and it is accessible even to those without prior knowledge of statistics.'
     });
 
-    const router = useRouter()
+    const router = useRouter();
+    const device = useDevice();
+    const textSizeClass = ref("text-lg");
+
+    onMounted(() => {
+        if (device.isMobileOrTablet) {
+            textSizeClass.value = "text-md";
+        }
+    });
 </script>
