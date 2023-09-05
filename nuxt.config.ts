@@ -3,7 +3,8 @@ export default defineNuxtConfig({
     'nuxt-icon', 
     '@nuxtjs/tailwindcss',
     '@element-plus/nuxt',
-    '@nuxtjs/google-adsense'
+    '@nuxtjs/google-adsense',
+    '@nuxtjs/device',
   ],
   elementPlus: { /** Options */ },
   appConfig: {
