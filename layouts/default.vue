@@ -7,7 +7,7 @@
         </div>
         <NuxtPage class="col-span-6"/>
         <div class="col-span-3">
-            <Adsbygoogle></Adsbygoogle>
+            <Adsbygoogle v-if="!headerExclusions.includes(route.path)"></Adsbygoogle>
         </div>
     </section>
 </template>
