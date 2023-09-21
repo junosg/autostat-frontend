@@ -7,7 +7,7 @@
             A no-cost statistical tool that autonomously determines the fitting test according to the supplied data. Its objective is to assist researchers in swiftly obtaining results for uncomplicated statistical analyses, and it is accessible even to those without prior knowledge of statistics.
         </div>
         <div class="p-8">
-            <ElButton size="large"><span class="text-2xl text-red-400 font-mono" @click="router.push({path: '/comparison'})">Get Started</span></ElButton>
+            <ElButton size="large"><span class="text-2xl text-red-400 font-mono" @click="router.push({path: '/tools/comparison'})">Get Started</span></ElButton>
         </div>
     </section>
 </template>
