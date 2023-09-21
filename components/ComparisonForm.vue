@@ -46,7 +46,9 @@
                 class="w-full"
             />
         </div>
-        <ElButton type="primary" @click="analyze" :disabled="isLoading || (predictorVariable == null || outcomeVariable == null)">Analyze</ElButton>
+        <ElButton class="mt-16" type="primary" @click="analyze" :disabled="isLoading || (predictorVariable == null || outcomeVariable == null)">
+            <span>Analyze</span>
+        </ElButton>
         <ElCard class="box-card" v-loading="isLoading">
             <template #header>
                 <div class="card-header grid grid-cols-6">
