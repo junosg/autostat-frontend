@@ -7,14 +7,14 @@
         </div>
         <NuxtPage class="col-span-6"/>
         <div class="col-span-3">
-            <Adsbygoogle v-if="!headerExclusions.includes(route.path)"></Adsbygoogle>
+            <Adsbygoogle v-if="headerInclusions.includes(route.path)"></Adsbygoogle>
         </div>
     </section>
 </template>
 <script setup>
 const route = useRoute();
 
-const headerExclusions = [
-    '/about'
+const headerInclusions = [
+    '/tools/comparison'
 ]
 </script>
