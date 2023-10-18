@@ -1,6 +1,6 @@
 <template>
     <section>
-        <AppHeader v-if="!headerExclusions.includes(route.path)"></AppHeader>
+        <AppHeader v-if="headerInclusions.includes(route.path)"></AppHeader>
     </section>
     <section class="grid grid-cols-12 gap-4">
         <div class="col-span-3">
