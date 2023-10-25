@@ -15,4 +15,12 @@
         title: 'Comparison Test',
         description: 'Automatically chooses the appropriate statistical comparison test based on the provided data and the assumptions inherent to that particular test.'
     })
+
+    const config = useAppConfig();
+
+    onMounted(async () => {
+        await useFetch(`${config.apiUrl}/init`, {
+            method: 'post'
+    });
+});
 </script>

@@ -12,9 +12,16 @@
     </section>
 </template>
 <script setup>
+const config = useAppConfig();
 const route = useRoute();
 
 const headerInclusions = [
     '/tools/comparison'
-]
+];
+
+onMounted(async () => {
+    await useFetch(`${config.apiUrl}/init`, {
+        method: 'post'
+    });
+});
 </script>
